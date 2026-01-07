@@ -13,8 +13,11 @@ body {
   margin: 0;
   padding: 16px;
   font-family: system-ui, sans-serif;
-  background: radial-gradient(circle at top, #101524, #070a12);
   color: var(--text);
+
+  background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)),
+    url("../img/img/64F1F0A6-012A-43AC-A539-DC8A3F3C0D5C.png") center / cover no-repeat fixed;
 }
 
 /* TITOLI */
@@ -32,7 +35,9 @@ h1 {
   margin-bottom: 18px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
-
+.card {
+  backdrop-filter: blur(6px);
+}
 /* ESERCIZI */
 .exercise {
   list-style: none;
