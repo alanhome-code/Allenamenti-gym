@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Allenamenti Gym</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>🏋️ Allenamenti Gym</h1>
+  <p>Benvenuto! Scegli la scheda:</p>
+  <a href="petto.html">Petto</a>
+  <a href="schiena.html">Schiena</a>
+  <a href="gambe.html">Gambe</a>
+</body>
+</html>
