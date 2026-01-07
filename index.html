@@ -1,9 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-  <h1>🏋️ Allenamenti</h1>
 
-  <div class="card">
-    <a class="btn" href="petto.html">💪 Petto</a>
-    <a class="btn" href="schiena.html">🏋️ Schiena</a>
-    <a class="btn" href="gambe.html">🦵 Gambe</a>
+<h1>🏋️ Gym Planner</h1>
+
+<div class="card">
+  <p style="color:var(--muted)">Seleziona allenamento</p>
+
+  <a class="btn-main" href="petto.html">💪 Petto</a>
+  <a class="btn-main" href="schiena.html">🏋️ Schiena</a>
+  <a class="btn-main" href="gambe.html">🦵 Gambe</a>
+</div>
+
+<div class="card">
+  <h2>⚙️ Impostazioni</h2>
+
+  <div class="toggle-row">
+    <span>⏱ Timer</span>
+    <label class="switch">
+      <input type="checkbox" id="toggleTimer">
+      <span class="slider"></span>
+    </label>
   </div>
+
+  <div class="toggle-row">
+    <span>🏋️ Carichi</span>
+    <label class="switch">
+      <input type="checkbox" id="toggleWeight">
+      <span class="slider"></span>
+    </label>
+  </div>
+</div>
+
+<script>
+function initToggle(id, key, def=true){
+  const el=document.getElementById(id);
+  const saved=localStorage.getItem(key);
+  el.checked = saved ? saved==="on" : def;
+  el.onchange = () => localStorage.setItem(key, el.checked?"on":"off");
+}
+initToggle("toggleTimer","showTimer");
+initToggle("toggleWeight","showWeight");
+</script>
+
 </body>
+</html>
