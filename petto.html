@@ -1,38 +1,20 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Petto</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
 <body>
-  <h1>Scheda Petto</h1>
+  <h1>💪 Petto</h1>
 
-  <ul class="exercise">
-    <li>Panca piana – 4x8</li>
-    <li>Croci manubri – 3x12</li>
-    <li>Spinte inclinate – 3x10</li>
-  </ul>
+  <div class="card">
+    <ul class="exercise">
+      <li><span>Panca piana</span><span>4×8</span></li>
+      <li><span>Panca inclinata</span><span>3×12</span></li>
+      <li><span>croci manubri</span><span>3×max</span></li>
+      <li><span>Dips</span><span>4×8-12</span></li>
+      <li><span>addominali</span><span>4×max</span></li>
+    </ul>
+  </div>
 
-  <p>Timer recupero: <span id="timer">60</span> sec</p>
-  <button onclick="startTimer()">Avvia Timer</button>
+  <div class="card">
+    <p>⏱ Recupero consigliato: <strong>90-120 sec</strong></p>
+    <p>📌 Note: concentrati sul controllo e la discesa lenta</p>
+  </div>
 
-  <a class="btn" href="index.html">⬅ Torna alla Home</a>
-
-  <script>
-    function startTimer() {
-      let time = 60;
-      const display = document.getElementById('timer');
-      const interval = setInterval(() => {
-        if(time <= 0) {
-          clearInterval(interval);
-          alert("Recupero terminato!");
-        } else {
-          display.textContent = time;
-          time--;
-        }
-      }, 1000);
-    }
-  </script>
+  <a class="btn" href="index.html">⬅ Home</a>
 </body>
-</html>
