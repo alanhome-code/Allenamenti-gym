@@ -1,56 +1,60 @@
+:root {
+  --bg: #0f1115;
+  --card: #1c1f26;
+  --primary: #3fa9f5;
+  --text: #ffffff;
+  --muted: #9aa0aa;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #111;
-  color: #fff;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
   margin: 0;
   padding: 20px;
-  text-align: center;
 }
 
 h1 {
-  color: #0af;
-  margin-bottom: 20px;
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 30px;
 }
 
-p {
-  font-size: 1.2em;
+.card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
 a.btn {
-  display: block;
-  background: #222;
-  color: #0af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #3fa9f5, #2d8fdc);
+  color: #fff;
   text-decoration: none;
-  font-size: 1.5em;
-  padding: 20px;
-  margin: 15px 0;
+  font-size: 1.4em;
+  padding: 22px;
+  margin-bottom: 18px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(63,169,245,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 12px rgba(63,169,245,0.3);
+}
+
+.exercise li {
+  background: #151820;
+  margin-bottom: 12px;
+  padding: 16px;
   border-radius: 12px;
-  transition: background 0.3s;
-}
-
-a.btn:hover {
-  background: #333;
-}
-
-ul.exercise {
-  list-style: none;
-  padding: 0;
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
-
-button {
-  font-size: 1.2em;
-  padding: 15px 25px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: none;
-  background: #0af;
-  color: #111;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background: #08c;
+  font-size: 1.15em;
+  display: flex;
+  justify-content: space-between;
 }
