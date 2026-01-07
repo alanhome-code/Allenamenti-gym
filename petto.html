@@ -7,11 +7,32 @@
 </head>
 <body>
   <h1>Scheda Petto</h1>
-  <ul>
+
+  <ul class="exercise">
     <li>Panca piana – 4x8</li>
     <li>Croci manubri – 3x12</li>
     <li>Spinte inclinate – 3x10</li>
   </ul>
-  <a href="index.html">⬅ Torna alla Home</a>
+
+  <p>Timer recupero: <span id="timer">60</span> sec</p>
+  <button onclick="startTimer()">Avvia Timer</button>
+
+  <a class="btn" href="index.html">⬅ Torna alla Home</a>
+
+  <script>
+    function startTimer() {
+      let time = 60;
+      const display = document.getElementById('timer');
+      const interval = setInterval(() => {
+        if(time <= 0) {
+          clearInterval(interval);
+          alert("Recupero terminato!");
+        } else {
+          display.textContent = time;
+          time--;
+        }
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
