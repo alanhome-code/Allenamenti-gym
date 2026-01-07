@@ -5,6 +5,35 @@
   <title>Gambe</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+  <script>
+let total = 60;
+let current;
+let interval;
+const circle = 565;
+
+function setTime(v){
+  total = Math.max(15, total + v);
+  document.getElementById("time").textContent = total;
+  document.getElementById("timerText").textContent = total;
+  document.getElementById("progress").style.strokeDashoffset = circle;
+}
+
+function startTimer(){
+  clearInterval(interval);
+  current = total;
+  interval = setInterval(()=>{
+    current--;
+    document.getElementById("timerText").textContent = current;
+    document.getElementById("progress").style.strokeDashoffset =
+      circle - (circle * (total - current) / total);
+
+    if(current <= 0){
+      clearInterval(interval);
+      navigator.vibrate?.(200);
+    }
+  },1000);
+}
+</script>
 <body>
   <h1>Scheda gambe</h1>
 
@@ -14,8 +43,37 @@
     <li>Spinte inclinate – 3x10</li>
   </ul>
 
-  <p>Timer recupero: <span id="timer">60</span> sec</p>
-  <button onclick="startTimer()">Avvia Timer</button>
+ <div class="card timer">
+  <h2>⏱ Recupero</h2>
+
+  <div class="controls" style="justify-content:center;">
+    <button class="btn-small" onclick="setTime(-15)">−</button>
+    <span class="value" id="time">60</span>
+    <button class="btn-small" onclick="setTime(15)">+</button>
+  </div>
+
+  <div class="timer-circle">
+    <svg width="200" height="200">
+      <circle cx="100" cy="100" r="90"
+        stroke="#222" stroke-width="14" fill="none"/>
+      <circle id="progress"
+        cx="100" cy="100" r="90"
+        stroke="url(#grad)" stroke-width="14"
+        fill="none"
+        stroke-dasharray="565"
+        stroke-dashoffset="565"/>
+      <defs>
+        <linearGradient id="grad">
+          <stop offset="0%" stop-color="#4da3ff"/>
+          <stop offset="100%" stop-color="#00e0b8"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="timer-text" id="timerText">60</div>
+  </div>
+
+  <button class="btn-main" onclick="startTimer()">START</button>
+</div>
 
   <a class="btn" href="index.html">⬅ Torna alla Home</a>
 
