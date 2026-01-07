@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <title>Petto</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petto</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -14,42 +14,21 @@
   <ul class="exercise">
     <li>
       <span>Panca piana</span>
-      <div class="controls">
+      <div class="controls weight">
         <button class="btn-small" onclick="chg('panca',-2)">−</button>
         <span class="value" id="panca">60</span>
         <button class="btn-small" onclick="chg('panca',2)">+</button>
       </div>
     </li>
-    <li>
-      <span>Croci manubri</span>
-      <div class="controls">
-        <button class="btn-small" onclick="chg('croci',-1)">−</button>
-        <span class="value" id="croci">14</span>
-        <button class="btn-small" onclick="chg('croci',1)">+</button>
-      </div>
-    </li>
   </ul>
 </div>
 
-<div class="card">
+<div class="card timer">
   <h2>⏱ Recupero</h2>
-
   <div class="controls" style="justify-content:center;">
     <button class="btn-small" onclick="chgTime(-15)">−</button>
     <span class="value" id="time">60</span>
     <button class="btn-small" onclick="chgTime(15)">+</button>
-  </div>
-
-  <div class="timer">
-    <svg width="180" height="180">
-      <circle cx="90" cy="90" r="80" stroke="#222" stroke-width="12" fill="none"/>
-      <circle id="prog" cx="90" cy="90" r="80"
-        stroke="#4da3ff" stroke-width="12"
-        stroke-dasharray="502"
-        stroke-dashoffset="502"
-        fill="none"/>
-    </svg>
-    <div class="timer-text" id="ttext">60</div>
   </div>
 
   <button class="btn-main" onclick="start()">START</button>
@@ -58,10 +37,26 @@
 <button class="btn-main" onclick="location.href='index.html'">⬅ Home</button>
 
 <script>
-let duration = 60, timer, left;
+const showTimer = localStorage.getItem("showTimer") !== "off";
+const showWeight = localStorage.getItem("showWeight") !== "off";
 
-function chg(id,val){
+document.querySelectorAll(".timer").forEach(e=>e.style.display=showTimer?"block":"none");
+document.querySelectorAll(".weight").forEach(e=>e.style.display=showWeight?"flex":"none");
+
+function chg(id,v){
   const el=document.getElementById(id);
-  el.textContent=Math.max(0, +el.textContent+val);
-  localStorage.setItem(id, el.textContent);
+  el.textContent=Math.max(0,+el.textContent+v);
 }
+let duration=60;
+function chgTime(v){
+  duration=Math.max(15,duration+v);
+  document.getElementById("time").textContent=duration;
+}
+function start(){
+  alert("Timer avviato: "+duration+" sec");
+}
+</script>
+
+</body>
+</html>
+
