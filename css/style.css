@@ -1,60 +1,115 @@
 :root {
-  --bg: #0f1115;
-  --card: #1c1f26;
-  --primary: #3fa9f5;
+  --bg: #0b0e14;
+  --card: #161a23;
+  --primary: #4da3ff;
+  --accent: #00e0b8;
   --text: #ffffff;
   --muted: #9aa0aa;
 }
 
+* { box-sizing: border-box; }
+
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
   margin: 0;
-  padding: 20px;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+  background: radial-gradient(circle at top, #101524, #070a12);
+  color: var(--text);
 }
 
+/* TITOLI */
 h1 {
   text-align: center;
-  color: var(--primary);
-  margin-bottom: 30px;
-}
-
-.card {
-  background: var(--card);
-  padding: 22px;
-  border-radius: 16px;
+  font-size: clamp(1.6em, 4vw, 2.2em);
   margin-bottom: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
-a.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  background: linear-gradient(135deg, #3fa9f5, #2d8fdc);
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.4em;
-  padding: 22px;
+/* CARD */
+.card {
+  background: linear-gradient(160deg, #1a1f2e, #121623);
+  border-radius: 20px;
+  padding: clamp(16px, 3vw, 24px);
   margin-bottom: 18px;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(63,169,245,0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
 }
 
-a.btn:active {
-  transform: scale(0.97);
-  box-shadow: 0 4px 12px rgba(63,169,245,0.3);
+/* ESERCIZI */
+.exercise {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .exercise li {
-  background: #151820;
-  margin-bottom: 12px;
-  padding: 16px;
-  border-radius: 12px;
-  font-size: 1.15em;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background: #0f1320;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+/* CONTROLLI */
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn-small {
+  width: clamp(36px, 8vw, 46px);
+  height: clamp(36px, 8vw, 46px);
+  border-radius: 50%;
+  border: none;
+  font-size: 1.2em;
+  background: var(--primary);
+  color: #000;
+}
+
+.value {
+  min-width: 36px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* PULSANTI GRANDI */
+.btn-main {
+  display: block;
+  width: 100%;
+  padding: clamp(14px, 3vw, 22px);
+  font-size: clamp(1.1em, 3vw, 1.4em);
+  border-radius: 18px;
+  border: none;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #000;
+  margin-top: 18px;
+}
+
+/* TIMER */
+.timer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+svg {
+  width: clamp(140px, 40vw, 200px);
+  height: clamp(140px, 40vw, 200px);
+  transform: rotate(-90deg);
+}
+
+.timer-text {
+  position: absolute;
+  font-size: clamp(1.6em, 5vw, 2.2em);
+  font-weight: bold;
+}
+
+/* TABLET ONLY */
+@media (min-width: 768px) {
+  body {
+    max-width: 700px;
+    margin: auto;
+  }
 }
