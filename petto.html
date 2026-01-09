@@ -6,6 +6,7 @@
 <title>Petto</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
 <h1>💪 Petto</h1>
@@ -25,11 +26,14 @@
 
 <div class="card timer">
   <h2>⏱ Recupero</h2>
+
   <div class="controls" style="justify-content:center;">
     <button class="btn-small" onclick="chgTime(-15)">−</button>
     <span class="value" id="time">60</span>
     <button class="btn-small" onclick="chgTime(15)">+</button>
   </div>
+
+  <div id="countdown" class="countdown"></div>
 
   <button class="btn-main" onclick="start()">START</button>
 </div>
@@ -37,60 +41,61 @@
 <button class="btn-main" onclick="location.href='index.html'">⬅ Home</button>
 
 <script>
-const showTimer = localStorage.getItem("showTimer") !== "off";
-const showWeight = localStorage.getItem("showWeight") !== "off";
+document.addEventListener("DOMContentLoaded", () => {
 
-document.querySelectorAll(".timer").forEach(e =>
-  e.style.display = showTimer ? "block" : "none"
-);
-document.querySelectorAll(".weight").forEach(e =>
-  e.style.display = showWeight ? "flex" : "none"
-);
+  const showTimer = localStorage.getItem("showTimer") !== "off";
+  const showWeight = localStorage.getItem("showWeight") !== "off";
 
-// ---- PESI ----
-function chg(id, v) {
-  const el = document.getElementById(id);
-  const val = Math.max(0, +el.textContent + v);
-  el.textContent = val;
-  localStorage.setItem(id, val);
-}
+  document.querySelectorAll(".timer").forEach(e =>
+    e.style.display = showTimer ? "block" : "none"
+  );
+  document.querySelectorAll(".weight").forEach(e =>
+    e.style.display = showWeight ? "flex" : "none"
+  );
 
-// ripristino pesi salvati
-document.querySelectorAll(".value").forEach(el => {
-  const v = localStorage.getItem(el.id);
-  if (v) el.textContent = v;
-});
+  // ---- PESI ----
+  window.chg = function(id, v) {
+    const el = document.getElementById(id);
+    const val = Math.max(0, +el.textContent + v);
+    el.textContent = val;
+    localStorage.setItem(id, val);
+  };
 
-// ---- TIMER ----
-let duration = 60;
-let timer;
-<div id="countdown" class="countdown"></div>
+  // ripristino pesi
+  document.querySelectorAll(".value").forEach(el => {
+    const v = localStorage.getItem(el.id);
+    if (v && el.id !== "time") el.textContent = v;
+  });
 
-function chgTime(v) {
-  duration = Math.max(15, duration + v);
-  document.getElementById("time").textContent = duration;
-}
+  // ---- TIMER ----
+  let duration = 60;
+  let timer;
 
-function start() {
-  clearInterval(timer);
-  let t = duration;
-  const cd = document.getElementById("countdown");
-  cd.textContent = t + "s";
+  window.chgTime = function(v) {
+    duration = Math.max(15, duration + v);
+    document.getElementById("time").textContent = duration;
+  };
 
-  timer = setInterval(() => {
-    t--;
+  window.start = function() {
+    clearInterval(timer);
+    let t = duration;
+    const cd = document.getElementById("countdown");
     cd.textContent = t + "s";
 
-    if (t <= 0) {
-      clearInterval(timer);
-      navigator.vibrate?.(300);
-      cd.textContent = "GO!";
-    }
-}
-</script>
-}
+    timer = setInterval(() => {
+      t--;
+      cd.textContent = t + "s";
+
+      if (t <= 0) {
+        clearInterval(timer);
+        navigator.vibrate?.(300);
+        cd.textContent = "GO!";
+      }
+    }, 1000);
+  };
+
+});
 </script>
 
 </body>
 </html>
-
