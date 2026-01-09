@@ -40,22 +40,54 @@
 const showTimer = localStorage.getItem("showTimer") !== "off";
 const showWeight = localStorage.getItem("showWeight") !== "off";
 
-document.querySelectorAll(".timer").forEach(e=>e.style.display=showTimer?"block":"none");
-document.querySelectorAll(".weight").forEach(e=>e.style.display=showWeight?"flex":"none");
+document.querySelectorAll(".timer").forEach(e =>
+  e.style.display = showTimer ? "block" : "none"
+);
+document.querySelectorAll(".weight").forEach(e =>
+  e.style.display = showWeight ? "flex" : "none"
+);
 
-function chg(id,v){
-  const el=document.getElementById(id);
-  el.textContent=Math.max(0,+el.textContent+v);
+// ---- PESI ----
+function chg(id, v) {
+  const el = document.getElementById(id);
+  const val = Math.max(0, +el.textContent + v);
+  el.textContent = val;
+  localStorage.setItem(id, val);
 }
-let duration=60;
-function chgTime(v){
-  duration=Math.max(15,duration+v);
-  document.getElementById("time").textContent=duration;
-  <span class="value" id="time">60</span>
-  <div id="countdown" class="countdown"></div>
+
+// ripristino pesi salvati
+document.querySelectorAll(".value").forEach(el => {
+  const v = localStorage.getItem(el.id);
+  if (v) el.textContent = v;
+});
+
+// ---- TIMER ----
+let duration = 60;
+let timer;
+<div id="countdown" class="countdown"></div>
+
+function chgTime(v) {
+  duration = Math.max(15, duration + v);
+  document.getElementById("time").textContent = duration;
 }
-function start(){
-  alert("Timer avviato: "+duration+" sec");
+
+function start() {
+  clearInterval(timer);
+  let t = duration;
+  const cd = document.getElementById("countdown");
+  cd.textContent = t + "s";
+
+  timer = setInterval(() => {
+    t--;
+    cd.textContent = t + "s";
+
+    if (t <= 0) {
+      clearInterval(timer);
+      navigator.vibrate?.(300);
+      cd.textContent = "GO!";
+    }
+}
+</script>
 }
 </script>
 
