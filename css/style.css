@@ -136,4 +136,51 @@ svg {
     max-width: 700px;
     margin: auto;
   }
+body{
+  font-family: system-ui, -apple-system;
+  background:#0f172a;
+  color:#e5e7eb;
+  padding:16px;
+}
+
+.card{
+  background:#1e293b;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
+}
+
+.btn-small{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:#334155;
+  color:white;
+  border:none;
+  font-size:18px;
+}
+
+.btn-main{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  background:#22c55e;
+  color:#022c22;
+  font-size:18px;
+  font-weight:600;
+  border:none;
+}
+
+.countdown{
+  font-size:32px;
+  font-weight:700;
+  margin-top:8px;
+  color:#22c55e;
+}
+
+.done{
+  opacity:0.5;
+  text-decoration:line-through;
+}
 }
