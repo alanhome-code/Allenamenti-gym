@@ -51,6 +51,8 @@ let duration=60;
 function chgTime(v){
   duration=Math.max(15,duration+v);
   document.getElementById("time").textContent=duration;
+  <span class="value" id="time">60</span>
+  <div id="countdown" class="countdown"></div>
 }
 function start(){
   alert("Timer avviato: "+duration+" sec");
